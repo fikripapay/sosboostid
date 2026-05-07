@@ -8,7 +8,7 @@ window.priceData_instagram = {
         warranty: "No Garansi",
         price: "Rp 773",
         Keterangan: "Location: Global 🌍",
-        status: "ready",
+        status: "maintenance",
       },
       {
         id: "10171",
@@ -16,7 +16,7 @@ window.priceData_instagram = {
         warranty: "30 Hari ♻️",
         price: "Rp 887",
         Keterangan: "Location: Global🌍",
-        status: "ready",
+        status: "maintenance",
       },
       {
         id: "10170",
@@ -24,7 +24,7 @@ window.priceData_instagram = {
         warranty: "No Garansi",
         price: "Rp 1.782",
         Keterangan: "Location: Global 🌍",
-        status: "ready",
+        status: "maintenance",
       },
       {
         id: "10171",
@@ -32,7 +32,7 @@ window.priceData_instagram = {
         warranty: "30 Hari ♻️",
         price: "Rp 2.066",
         Keterangan: "Location: Global 🌍",
-        status: "ready",
+        status: "maintenance",
       },
       {
         id: "10170",
@@ -40,7 +40,7 @@ window.priceData_instagram = {
         warranty: "No Garansi",
         price: "Rp 3.190",
         Keterangan: "Location: Global 🌍",
-        status: "ready",
+        status: "maintenance",
       },
       {
         id: "10171",
@@ -48,7 +48,7 @@ window.priceData_instagram = {
         warranty: "30 Hari ♻️",
         price: "Rp 3.957",
         Keterangan: "Location: Global 🌍",
-        status: "ready",
+        status: "maintenance",
       },
       {
         id: "10170",
@@ -56,7 +56,7 @@ window.priceData_instagram = {
         warranty: "No Garansi",
         price: "Rp 4.607",
         Keterangan: "Location: Global 🌍",
-        status: "ready",
+        status: "maintenance",
       },
       {
         id: "10171",
@@ -64,7 +64,7 @@ window.priceData_instagram = {
         warranty: "30 Hari ♻️",
         price: "Rp 5.717",
         Keterangan: "Location: Global 🌍",
-        status: "ready",
+        status: "maintenance",
       },
       {
         id: "10170",
@@ -72,7 +72,7 @@ window.priceData_instagram = {
         warranty: "No Garansi",
         price: "Rp 6.143",
         Keterangan: "Location: Global 🌍",
-        status: "ready",
+        status: "maintenance",
       },
       {
         id: "10171",
@@ -80,7 +80,7 @@ window.priceData_instagram = {
         warranty: "30 Hari ♻️",
         price: "Rp 7.622",
         Keterangan: "Location: Global 🌍",
-        status: "ready",
+        status: "maintenance",
       },
     ],
   },
