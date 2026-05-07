@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SosBoost ID</title>
+    <link rel="icon" type="image/png" href="pavicon.png" />
+    <!-- Google Fonts: Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Lucide Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      :root {
+        --bg-dark: #0a0a0c;
+        --bg-card: rgba(255, 255, 255, 0.03);
+        --border-card: rgba(255, 255, 255, 0.08);
+        --accent-primary: #6366f1; /* Indigo */
+        --accent-secondary: #a855f7; /* Purple */
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --status-ready: #22c55e;
+        --status-slow: #eab308;
+        --status-maintenance: #ef4444;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-main);
+        line-height: 1.6;
+        overflow-x: hidden;
+        min-height: 100vh;
+        background-image:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(99, 102, 241, 0.05) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(168, 85, 247, 0.05) 0%,
+            transparent 40%
+          );
+      }
+
+      .btn-order.disabled {
+        background: rgba(255, 255, 255, 0.08);
+        color: #777;
+        cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+        opacity: 0.6;
+      }
+
+      .btn-order.disabled:hover {
+        transform: none;
+      }
+
+      /* Layout Utilities */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* Header */
+      header {
+        padding: 2rem 0;
+        text-align: center;
+        animation: fadeInDown 0.8s ease-out;
+      }
+
+      .brand-logo {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -1px;
+        background: linear-gradient(
+          to right,
+          var(--accent-primary),
+          var(--accent-secondary)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+      }
+
+      .subtitle {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      /* Navigation / Back Button */
+      .nav-actions {
+        margin-bottom: 2rem;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        background: none;
+      }
+
+      .btn-back:hover {
+        color: var(--text-main);
+        transform: translateX(-4px);
+      }
+
+      /* Page Titles */
+      .page-header {
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Cards Grid */
+      .grid {
+        display: grid;
+        gap: 1.5rem;
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .grid-home {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+
+      .grid-category {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+
+      /* Card Component */
+      .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: var(--transition);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.03),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: 0.6s;
+      }
+
+      .card:hover::before {
+        transform: translateX(100%);
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.06);
+        border-color: var(--accent-primary);
+        box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2);
+      }
+
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(99, 102, 241, 0.1);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        color: var(--accent-primary);
+        transition: var(--transition);
+      }
+
+      .card:hover .card-icon {
+        background: var(--accent-primary);
+        color: white;
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .card-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      /* Table Styles */
+      .table-container {
+        width: 100%;
+        overflow-x: auto;
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        min-width: 600px;
+      }
+
+      th {
+        padding: 1.25rem 1.5rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--border-card);
+      }
+
+      td {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid var(--border-card);
+        font-size: 0.95rem;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:hover td {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      /* Badge & Status */
+      .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .status-ready {
+        background: rgba(34, 197, 94, 0.1);
+        color: var(--status-ready);
+      }
+      .status-slow {
+        background: rgba(234, 179, 8, 0.1);
+        color: var(--status-slow);
+      }
+      .status-maintenance {
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--status-maintenance);
+      }
+
+      /* Order Button */
+      .btn-order {
+        background: linear-gradient(
+          to right,
+          var(--accent-primary),
+          var(--accent-secondary)
+        );
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.85rem;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-order:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .price-note {
+        margin-top: 1.5rem;
+        padding: 1rem 1.2rem;
+        border-radius: 12px;
+        background: rgba(99, 102, 241, 0.08);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 4rem;
+        padding: 2rem 0 0 0;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        border-top: 1px solid var(--border-card);
+      }
+
+      /* Responsive Breakpoints */
+      @media (max-width: 640px) {
+        .page-title {
+          font-size: 1.8rem;
+        }
+        .grid-home {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .card {
+          padding: 1.5rem;
+        }
+        .card-icon {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand-logo">SosBoost ID</div>
+      </header>
+
+      <!-- HOMEPAGE SECTION -->
+      <section id="homepage">
+        <div class="page-header">
+          <h1 class="page-title">Pilih Platform</h1>
+          <p class="subtitle">
+            Layanan terbaik untuk pertumbuhan media sosial Anda
+          </p>
+        </div>
+        <div class="grid grid-home" id="platform-grid">
+          <!-- TikTok -->
+          <div class="card" onclick="navigateToCategory('TikTok', 'tiktok')">
+            <div class="card-icon"><i class="fa-brands fa-tiktok"></i></div>
+            <div class="card-name">TikTok</div>
+          </div>
+          <!-- Instagram -->
+          <div
+            class="card"
+            onclick="navigateToCategory('Instagram', 'instagram')"
+          >
+            <div class="card-icon"><i class="fa-brands fa-instagram"></i></div>
+            <div class="card-name">Instagram</div>
+          </div>
+          <!-- Facebook -->
+          <div
+            class="card"
+            onclick="navigateToCategory('Facebook', 'facebook')"
+          >
+            <div class="card-icon"><i class="fa-brands fa-facebook-f"></i></div>
+            <div class="card-name">Facebook</div>
+          </div>
+          <!-- Shopee -->
+          <div class="card" onclick="navigateToCategory('Shopee', 'shopee')">
+            <div class="card-icon"><i class="fa-solid fa-s"></i></div>
+            <div class="card-name">Shopee</div>
+          </div>
+          <!-- WhatsApp -->
+          <div
+            class="card"
+            onclick="navigateToCategory('WhatsApp', 'whatsapp')"
+          >
+            <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="card-name">WhatsApp</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORY PAGE SECTION -->
+      <section id="category-page" class="hidden">
+        <div class="nav-actions">
+          <button class="btn-back" onclick="showPage('homepage')">
+            <i data-lucide="arrow-left"></i> Kembali ke Home
+          </button>
+        </div>
+        <div class="page-header">
+          <h1 class="page-title" id="category-title">TikTok Services</h1>
+          <p class="subtitle">Pilih kategori layanan yang diinginkan</p>
+        </div>
+        <div class="grid grid-category" id="category-grid">
+          <!-- Categories will be injected here -->
+        </div>
+      </section>
+
+      <!-- PRICELIST PAGE SECTION -->
+      <section id="pricelist-page" class="hidden">
+        <div class="nav-actions">
+          <button class="btn-back" id="back-to-category">
+            <i data-lucide="arrow-left"></i> Kembali ke Kategori
+          </button>
+        </div>
+        <div class="page-header">
+          <h1 class="page-title" id="pricelist-title">Pricelist</h1>
+          <p class="subtitle" id="pricelist-subtitle">
+            Harga terupdate & layanan stabil
+          </p>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Jumlah</th>
+                <th>Garansi</th>
+                <th>Harga</th>
+                <th>Keterangan</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="price-table-body">
+              <!-- Data will be injected here -->
+            </tbody>
+          </table>
+          <div id="price-note" class="price-note"></div>
+        </div>
+      </section>
+
+      <footer>
+        Copyright &copy; 2026 SosBoost ID. All rights reserved. <br />
+      </footer>
+    </div>
+
+    <script>
+      // DATA STRUCTURE
+      const serviceData = {
+        tiktok: [
+          { id: "tt-followers", name: "Followers", icon: "users" },
+          { id: "tt-views", name: "Views", icon: "eye" },
+          { id: "tt-likes", name: "Likes", icon: "heart" },
+          { id: "tt-shares", name: "shares", icon: "forward" },
+          { id: "tt-saves", name: "saves", icon: "bookmark" },
+          { id: "tt-comments", name: "Comments", icon: "message-square-more" },
+          { id: "tt-commentLikes", name: "Comment Likes", icon: "thumbs-up" },
+          { id: "tt-live", name: "Live Stream", icon: "radio" },
+        ],
+        instagram: [
+          { id: "ig-followers", name: "Followers", icon: "users" },
+          { id: "ig-members", name: "Channel Members", icon: "radio" },
+          { id: "ig-story", name: "Story Views", icon: "eye" },
+          { id: "ig-views", name: "Reels Views", icon: "eye" },
+          { id: "ig-likes", name: "Post Likes", icon: "thumbs-up" },
+          { id: "ig-repost", name: "Repost", icon: "repeat-2" },
+          { id: "ig-shares", name: "Post Shares", icon: "forward" },
+          { id: "ig-saves", name: "Post Saves", icon: "bookmark" },
+          {
+            id: "ig-comments",
+            name: "Post Comments",
+            icon: "message-square-more",
+          },
+          { id: "ig-commentLikes", name: "Comment Likes", icon: "thumbs-up" },
+        ],
+        facebook: [
+          {
+            id: "fb-followers",
+            name: "Followers",
+            icon: "users",
+          },
+          { id: "fb-group", name: "Group Members", icon: "users" },
+          { id: "fb-views", name: "Reels Views", icon: "eye" },
+          { id: "fb-likes", name: "Post Likes", icon: "thumbs-up" },
+          { id: "fb-shares", name: "Post Shares", icon: "forward" },
+          { id: "fb-reactions", name: "Post Reactions", icon: "smile-plus" },
+          {
+            id: "fb-comments",
+            name: "Post Comments",
+            icon: "message-square-more",
+          },
+        ],
+        whatsapp: [
+          { id: "wa-channels", name: "Channel Followers", icon: "rss" },
+          {
+            id: "channel-reactions",
+            name: "Channel Reactions",
+            icon: "smile-plus",
+          },
+          { id: "channel-polling", name: "Channel Polling", icon: "vote" },
+        ],
+        shopee: [
+          { id: "shopee-video", name: "Video Likes", icon: "play" },
+          {
+            id: "shopee-product",
+            name: "Product Likes",
+            icon: "shopping-basket",
+          },
+          { id: "shopee-followers", name: "Followers", icon: "users" },
+          { id: "shopee-liveStream", name: "Live Stream", icon: "radio" },
+        ],
+      };
+
+      async function loadPriceData(platform) {
+        // kalau sudah pernah diload
+        if (window[`priceData_${platform}`]) {
+          return window[`priceData_${platform}`];
+        }
+
+        const script = document.createElement("script");
+        script.src = `data/${platform}.js`;
+
+        document.body.appendChild(script);
+
+        return new Promise((resolve) => {
+          script.onload = () => {
+            resolve(window[`priceData_${platform}`]);
+          };
+        });
+      }
+
+      // NAVIGATION LOGIC
+      let currentPlatform = "";
+      let currentPlatformName = "";
+
+      function showPage(pageId) {
+        document
+          .querySelectorAll("section")
+          .forEach((s) => s.classList.add("hidden"));
+        document.getElementById(pageId).classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function navigateToCategory(platformName, platformId) {
+        currentPlatform = platformId;
+        currentPlatformName = platformName;
+
+        const titleEl = document.getElementById("category-title");
+        const gridEl = document.getElementById("category-grid");
+
+        titleEl.innerText = `${platformName} Services`;
+        gridEl.innerHTML = "";
+
+        const services = serviceData[platformId] || [];
+        services.forEach((service) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.onclick = () => navigateToPricelist(service.name, service.id);
+          card.innerHTML = `
+                    <div class="card-icon"><i data-lucide="${service.icon}"></i></div>
+                    <div class="card-name">${service.name}</div>
+                `;
+          gridEl.appendChild(card);
+        });
+
+        lucide.createIcons();
+        showPage("category-page");
+      }
+
+      async function navigateToPricelist(serviceName, serviceId) {
+        const titleEl = document.getElementById("pricelist-title");
+        const subtitleEl = document.getElementById("pricelist-subtitle");
+        const tableBody = document.getElementById("price-table-body");
+        const backBtn = document.getElementById("back-to-category");
+        const noteEl = document.getElementById("price-note");
+
+        titleEl.innerText = `${currentPlatformName} ${serviceName}`;
+        subtitleEl.innerText = `Daftar harga terbaik untuk ${currentPlatformName} ${serviceName}`;
+        tableBody.innerHTML = "";
+
+        // Update back button to return to specific platform categories
+        backBtn.onclick = () =>
+          navigateToCategory(currentPlatformName, currentPlatform);
+
+        const data = await loadPriceData(currentPlatform);
+        const service = data[serviceId] || { data: [] };
+        const items = service.data;
+        const minOrder = service.min || "-";
+
+        noteEl.innerText = `Note: Tersedia jumlah lain untuk ${currentPlatformName} ${serviceName}. Minimal order: ${minOrder}.`;
+
+        items.forEach((item, index) => {
+          const tr = document.createElement("tr");
+
+          const statusLabel =
+            item.status.charAt(0).toUpperCase() + item.status.slice(1);
+          const waMessage = encodeURIComponent(
+            `Halo SosBoost ID, saya mau order ${currentPlatformName} ${serviceName}\nJumlah: ${item.qty}\nHarga: ${item.price}. #${item.id}`,
+          );
+          const waLink = `https://wa.me/6285220283627?text=${waMessage}`;
+
+          tr.innerHTML = `
+            <td>${item.id}</td>
+            <td style="font-weight: 600;">${item.qty}</td>
+            <td>${item.warranty}</td>
+            <td style="color: var(--accent-primary); font-weight: 700;">${item.price}</td>
+            <td>${item.Keterangan || "-"}</td>
+            <td><span class="badge status-${item.status}">${statusLabel}</span></td>
+            <td>
+              ${
+                item.status === "maintenance"
+                  ? `<button class="btn-order disabled" disabled>Unavailable</button>`
+                  : `<a href="${waLink}" target="_blank" class="btn-order">Order Now</a>`
+              }
+            </td>
+          `;
+          tableBody.appendChild(tr);
+        });
+
+        showPage("pricelist-page");
+      }
+
+      // Initialize Icons
+      document.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+      });
+    </script>
+  </body>
+</html>
