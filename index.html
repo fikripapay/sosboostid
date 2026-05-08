@@ -486,7 +486,7 @@
                 <th>Harga</th>
                 <th>Keterangan</th>
                 <th>Status</th>
-                <th>Aksi</th>
+                <!-- <th>Aksi</th> -->
               </tr>
             </thead>
             <tbody id="price-table-body">
@@ -662,13 +662,6 @@
             <td style="color: var(--accent-primary); font-weight: 700;">${item.price}</td>
             <td>${item.Keterangan || "-"}</td>
             <td><span class="badge status-${item.status}">${statusLabel}</span></td>
-            <td>
-              ${
-                item.status === "maintenance"
-                  ? `<button class="btn-order disabled" disabled>Unavailable</button>`
-                  : `<a href="${waLink}" target="_blank" class="btn-order">Order Now</a>`
-              }
-            </td>
           `;
           tableBody.appendChild(tr);
         });
